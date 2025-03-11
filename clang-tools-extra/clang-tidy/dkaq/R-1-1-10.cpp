@@ -25,7 +25,7 @@ namespace dkaq {
       this);
 }*/
 
-
+//请给clang-tidy增加一个检查项,希望通过修改clang-tidy的源代码,增加一个C++的功能检查.希望检查每一个类/struct/union中,如果有类型位整形的位,这个位的长度必须大于1
 
 void BitFieldWidthCheck::registerMatchers(MatchFinder *Finder) {
   // Match bit-fields that are of integer types
@@ -47,18 +47,24 @@ void BitFieldWidthCheck::check(const MatchFinder::MatchResult &Result) {
   if (!BitField)
     return;
 
-	unsigned BitWidth = BitField->getBitWidthValue(Result.Context);
-
-const Expr *WidthExpr = BitField->getBitWidth();
-	if (!WidthExpr)
+// Access the bit-width expression
+  const Expr *WidthExpr = BitField->getBitWidth();
+  if (!WidthExpr)
     return;
+  
+  // Evaluate the bit width
+  Expr::EvalResult EvalResult;
+  if (!WidthExpr->EvaluateAsInt(EvalResult, *Result.Context))
+    return;
+  
+  llvm::APSInt WidthValue = EvalResult.Val.getInt();
+  unsigned uWidth = WidthValue.getZExtValue();
 
 
-	if (BitField) {  
+  if (uWidth <= 1) {  
     // 示例：输出匹配到的位域名称和位置  
     diag(BitField->getLocation(), "违反GJB R-1-1-10 Found integer bit-field: %0")  
-        << BitField->getName()  
-        << BitField->getSourceRange();  
+        << BitField->getName();  
   }  
   
   

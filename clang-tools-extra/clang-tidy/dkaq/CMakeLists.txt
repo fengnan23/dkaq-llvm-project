@@ -5,6 +5,8 @@ add_clang_library(dkaqPlugin STATIC
   R-1-1-7.cpp
   R-1-1-8.cpp
   R-1-1-10.cpp
+  R-1-1-11.cpp
+  R-1-1-13.cpp
 
   LINK_LIBS
   clangTidy

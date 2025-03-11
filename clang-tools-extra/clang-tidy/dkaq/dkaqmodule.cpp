@@ -25,6 +25,9 @@
 #include "R-1-1-8.h"
 //#include "R-1-1-9.h" // 无需实现,和R-1-1-8一样的功能,已经在R-1-1-8中实现了
 #include "R-1-1-10.h"
+#include "R-1-1-11.h"
+//#include "R-1-1-12.h" // 这个标准没有看懂,应该不正确
+#include "R-1-1-13.h"
 
 using namespace clang::ast_matchers;
 
@@ -47,7 +50,10 @@ class DkaqModule : public ClangTidyModule {
 	//CheckFactories.registerCheck<DefineUndefPairCheck>("dkaq-unpair-define-function"); // R-1-1-6
 	CheckFactories.registerCheck<MacroParamParenthesesCheck>("dkaq-marco-parentheses");
 	CheckFactories.registerCheck<NamedDeclarationCheck>("dkaq-unnamed-union-struct-declaration");
-	CheckFactories.registerCheck<BitFieldWidthCheck>("dkaq-bitfield-unsign-check");
+	CheckFactories.registerCheck<BitFieldWidthCheck>("dkaq-bitfield-unsign-check"); // R-1-1-10
+	CheckFactories.registerCheck<ExplicitBitFieldSignCheck>("dkaq-bitfield-explicit-sign-check"); // R-1-1-11
+	//
+	CheckFactories.registerCheck<NamedParametersCheck>("dkaq-bitfield-explicit-sign-check"); // R-1-1-13
   }
 }; 
 
