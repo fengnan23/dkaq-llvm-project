@@ -43,6 +43,7 @@ add_clang_library(clangTidyCppCoreGuidelinesModule STATIC
   clangTidyPerformanceModule
   clangTidyReadabilityModule
   clangTidyUtils
+  dkaqPlugin
 
   DEPENDS
   omp_gen

@@ -37,7 +37,7 @@ clang_target_link_libraries(clangTidy
   clangRewrite
   clangSerialization
   clangTooling
-  clangToolingCore
+  clangToolingCore   
   )
 
 if(CLANG_TIDY_ENABLE_STATIC_ANALYZER)
@@ -76,6 +76,7 @@ add_subdirectory(performance)
 add_subdirectory(portability)
 add_subdirectory(readability)
 add_subdirectory(zircon)
+add_subdirectory(dkaq)
 set(ALL_CLANG_TIDY_CHECKS
   clangTidyAndroidModule
   clangTidyAbseilModule
@@ -100,6 +101,7 @@ set(ALL_CLANG_TIDY_CHECKS
   clangTidyPortabilityModule
   clangTidyReadabilityModule
   clangTidyZirconModule
+  dkaqPlugin
   )
 if(CLANG_TIDY_ENABLE_STATIC_ANALYZER)
   list(APPEND ALL_CLANG_TIDY_CHECKS clangTidyMPIModule)

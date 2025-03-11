@@ -30,6 +30,9 @@
 #include "llvm/TargetParser/Host.h"
 #include <optional>
 
+#include <chrono>
+#include <thread>
+
 using namespace clang::tooling;
 using namespace llvm;
 
@@ -103,7 +106,8 @@ Configuration files:
 
 const char DefaultChecks[] = // Enable these checks by default:
     "clang-diagnostic-*,"    //   * compiler diagnostics
-    "clang-analyzer-*";      //   * Static Analyzer checks
+    "clang-analyzer-*," //   * Static Analyzer checks
+	"dkaq-*";      		// dkaq
 
 static cl::opt<std::string> Checks("checks", desc(R"(
 Comma-separated list of globs with optional '-'
@@ -579,6 +583,8 @@ static llvm::IntrusiveRefCntPtr<vfs::OverlayFileSystem> createBaseFS() {
 int clangTidyMain(int argc, const char **argv) {
   llvm::InitLLVM X(argc, argv);
   SmallVector<const char *> Args{argv, argv + argc};
+  
+  //std::this_thread::sleep_for(std::chrono::seconds(5));
 
   // expand parameters file to argc and argv.
   llvm::BumpPtrAllocator Alloc;
