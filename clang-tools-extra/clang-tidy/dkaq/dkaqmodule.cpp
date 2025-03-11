@@ -28,6 +28,12 @@
 #include "R-1-1-11.h"
 //#include "R-1-1-12.h" // 这个标准没有看懂,应该不正确
 #include "R-1-1-13.h"
+//#include "R-1-1-14.h" // 这个标准应该是错误的，无法实现函数重载
+#include "R-1-1-15.h"  // 这个在C++标准中就是error，编译不通过ERROR
+// R-1-1-16 单个文件无法实现，外部变量名称，类型定义必须一致。如果不一致，link错误
+#include "R-1-1-17.h" 
+#include "R-1-1-18.h" 
+
 
 using namespace clang::ast_matchers;
 
@@ -35,12 +41,10 @@ namespace clang {
 namespace tidy {
 namespace dkaq {
 
-//我在给clang-tidy增加一个检查项,希望通过修改clang-tidy的源代码,增加一个C++的功能检查. 检查不能定义一个#define的条件,不能在没有#undef之前再#define成一个新的值
-
 class DkaqModule : public ClangTidyModule {
  public:
   void addCheckFactories(ClangTidyCheckFactories &CheckFactories) override {
-    CheckFactories.registerCheck<MyUnusedVarCheck>("dkaq-unused-variables");
+    //CheckFactories.registerCheck<MyUnusedVarCheck>("dkaq-unused-variables");
 	CheckFactories.registerCheck<VirtualDestructorCheck>("dkaq-virtual-destructor");
 	CheckFactories.registerCheck<DefineKeywordCheck>("dkaq-define-keyword"); 
 	CheckFactories.registerCheck<DefineValueKeywordCheck>("dkaq-define-value");
@@ -50,10 +54,17 @@ class DkaqModule : public ClangTidyModule {
 	//CheckFactories.registerCheck<DefineUndefPairCheck>("dkaq-unpair-define-function"); // R-1-1-6
 	CheckFactories.registerCheck<MacroParamParenthesesCheck>("dkaq-marco-parentheses");
 	CheckFactories.registerCheck<NamedDeclarationCheck>("dkaq-unnamed-union-struct-declaration");
-	CheckFactories.registerCheck<BitFieldWidthCheck>("dkaq-bitfield-unsign-check"); // R-1-1-10
-	CheckFactories.registerCheck<ExplicitBitFieldSignCheck>("dkaq-bitfield-explicit-sign-check"); // R-1-1-11
-	//
+	CheckFactories.registerCheck<BitFieldWidthCheck>("dkaq-bitfield-unsign"); // R-1-1-10
+	CheckFactories.registerCheck<ExplicitBitFieldSignCheck>("dkaq-bitfield-explicit-sign"); // R-1-1-11
+	// // R-1-1-12
 	CheckFactories.registerCheck<NamedParametersCheck>("dkaq-bitfield-explicit-sign-check"); // R-1-1-13
+	// // R-1-1-14
+	CheckFactories.registerCheck<ExplicitParameterTypeCheck>("dkaq-func-explicit-param-name");// R-1-1-15
+	// // R-1-1-16
+	CheckFactories.registerCheck<NoExternInFunctionCheck>("dkaq-extern-inside-function");// R-1-1-17
+	CheckFactories.registerCheck<ExplicitArrayBoundsCheck>("dkaq-array-without-explicit-boundary");// R-1-1-18
+	
+	
   }
 }; 
 

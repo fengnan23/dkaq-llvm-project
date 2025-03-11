@@ -8,7 +8,7 @@
 dnf install g++ cmake
 
 #这里下载的是最新版本的llvm，也可以根据需要下载特定版本的llvm
-chcp 65001 
+chcp 65001 # disable showInlcudes
 git clone https://github.com/llvm/llvm-project.git
 cd llvm-project
 mkdir build
