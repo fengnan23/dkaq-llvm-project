@@ -31,9 +31,9 @@ private:
       // 检查是否已经存在同名宏定义 
       if (DefinedMacros.count(MacroName))  {
         Check->diag(MacroNameTok.getLocation(), 
-                    "违反GJB R-1-1-5 Macro '%0' is redefined without #undef")
+                    "违反GJB R-1-1-5 宏定义在undef前面🈶️重复 '%0'. 由DKAQ提供")
             << MacroName;
-        Check->diag(DefinedMacros[MacroName], "Previous definition is here",
+        Check->diag(DefinedMacros[MacroName], "前面的宏定义在这里. 由DKAQ提供",
                     DiagnosticIDs::Note);
       }
  

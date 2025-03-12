@@ -63,7 +63,7 @@ void ExplicitParameterTypeCheck::check(const MatchFinder::MatchResult &Result) {
         
         // Issue diagnostic
         diag(Param->getLocation(), 
-            "parameter '%0' in function '%1' has no type specifier")
+            "函数'%1'参数'%0'没有提供类型. 由DKAQ提供")
             << ParamName << FuncName;
         
         // Can't really provide a meaningful fix-it hint without knowing

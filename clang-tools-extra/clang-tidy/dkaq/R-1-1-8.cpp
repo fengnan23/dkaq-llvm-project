@@ -71,7 +71,7 @@ void NamedDeclarationCheck::check(const MatchFinder::MatchResult &Result) {
       return;
 
     diag(MatchedStruct->getLocation(), 
-        "违反GJB-R-1-1-8 struct declaration should have a name");
+        "违反GJB-R-1-1-8 结构体定义必须要有名字. 由DKAQ提供");
   }
   
   if (MatchedEnum) {
@@ -80,7 +80,7 @@ void NamedDeclarationCheck::check(const MatchFinder::MatchResult &Result) {
       return;
 
     diag(MatchedEnum->getLocation(), 
-        "违反GJB-R-1-1-8 enum declaration should have a name");
+        "违反GJB-R-1-1-8 枚举类型定义必须要有名字. 由DKAQ提供");
   }
   
   if (MatchedUnion) {
@@ -89,7 +89,7 @@ void NamedDeclarationCheck::check(const MatchFinder::MatchResult &Result) {
       return;
 
     diag(MatchedUnion->getLocation(), 
-        "违反GJB R-1-1-8 union declaration should have a name");
+        "违反GJB R-1-1-8 联合类型定义必须要有名字. 由DKAQ提供");
   }
 }
 

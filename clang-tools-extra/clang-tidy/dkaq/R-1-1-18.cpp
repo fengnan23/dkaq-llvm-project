@@ -53,7 +53,7 @@ void ExplicitArrayBoundsCheck::check(const MatchFinder::MatchResult &Result) {
     if (auto ArrayLoc = TypeLoc.getAs<ArrayTypeLoc>())  {  
       // 检查是否显式指定了数组大小  
       if (!ArrayLoc.getSizeExpr())  {  
-        diag(Var->getLocation(), "违反GJB R-1-1-18 '%0'数组定义必须显式声明边界")  
+        diag(Var->getLocation(), "违反GJB R-1-1-18 '%0'数组定义必须显式声明边界. 由DKAQ提供")  
             << Var->getName();  
       }  
       break;  

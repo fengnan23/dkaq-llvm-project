@@ -30,7 +30,7 @@ private:
       StringRef MacroName = MacroNameTok.getIdentifierInfo()->getName(); 
       if (isCppKeyword(MacroName)) {
         Check->diag(MacroNameTok.getLocation(), 
-                    "违反GJB R-1-1-1 Define '%0' redefines a C++ keyword")
+                    "违反GJB R-1-1-1 重复define定义 '%0' 由DKAQ提供")
             << MacroName;
       }
     }

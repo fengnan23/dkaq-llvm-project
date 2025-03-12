@@ -31,7 +31,7 @@ private:
         StringRef TokenText = Tok.getIdentifierInfo()  ? Tok.getIdentifierInfo()->getName()  : "";
         if (isCppKeyword(TokenText)) {
           Check->diag(Tok.getLocation(), 
-                      "违反GJB R-1-1-2 Macro value '%0' is a C++ keyword")
+                      "违反GJB R-1-1-2 重新define定义了c++关键字 '%0'. 由DKAQ提供")
               << TokenText;
         }
       }

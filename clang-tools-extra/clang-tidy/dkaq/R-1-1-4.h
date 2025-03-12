@@ -24,7 +24,7 @@ public:
     if (const auto *Var = Result.Nodes.getNodeAs<VarDecl>("var"))  {
       StringRef VarName = Var->getName();
       if (isCppKeyword(VarName)) {
-        diag(Var->getLocation(), "违反GJB R-1-1-4 Variable '%0' is a C++ keyword")
+        diag(Var->getLocation(), "违反GJB R-1-1-4 变量名称 '%0' 是c++关键字. 由DKAQ提供")
             << VarName;
       }
     }

@@ -56,7 +56,7 @@ void NoExternInFunctionCheck::check(const MatchFinder::MatchResult &Result) {
   
   // Issue diagnostic
   auto Diag = diag(ExternVar->getLocation(), 
-                  "违反GJB R-1-1-17 extern variable '%0' should not be declared inside function")
+                  "违反GJB R-1-1-17 外部extern变量'%0'不能在函数中定义. 由DKAQ提供")
                 << VarName;
   
 }

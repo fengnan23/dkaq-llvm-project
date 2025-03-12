@@ -80,7 +80,7 @@ void ExplicitBitFieldSignCheck::check(const MatchFinder::MatchResult &Result) {
   if (!HasExplicitSign) {
     auto Diag = 
         diag(Field->getLocation(), 
-             "违反GJB R-1-1-11 bit-field '%0' of type '%1' should have an explicit sign specifier")
+             "违反GJB R-1-1-11 位变量'%0'一定需要显式的符号定义,例如：unsigned. 由DKAQ提供")
         << Field->getName() << TypeStr;
     
     // Add a fix-it hint to add 'signed' or 'unsigned' based on the actual type

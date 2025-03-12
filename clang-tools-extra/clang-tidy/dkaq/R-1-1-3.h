@@ -33,9 +33,9 @@ public:
       for (const auto *Decl : Context->getTranslationUnitDecl()->decls()) {
         if (const auto *OtherTypedef = dyn_cast<TypedefDecl>(Decl)) {
           if (OtherTypedef != Typedef && OtherTypedef->getName() == TypedefName) {
-            diag(Typedef->getLocation(), "违反GJB R-1-1-3 Typedef '%0' is redefined in the translation unit")
+            diag(Typedef->getLocation(), "违反GJB R-1-1-3 重复typedef定义 '%0'. 由DKAQ提供")
                 << TypedefName;
-            diag(OtherTypedef->getLocation(), "Previous definition is here",
+            diag(OtherTypedef->getLocation(), "前面的定义在这里. 由DKAQ提供",
                  DiagnosticIDs::Note);
             break;
           }

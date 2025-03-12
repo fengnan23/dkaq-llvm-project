@@ -34,7 +34,7 @@ public:
     if (const auto *Func = Result.Nodes.getNodeAs<FunctionDecl>("function"))  {
       // 在函数结束时检查未配对的#define 
       for (const auto &Macro : ActiveMacros) {
-        diag(Macro.getValue(),  "Macro '%0' is defined but not undefined in function")
+        diag(Macro.getValue(),  "宏定义define'%0' 在函数中和undef必须同时出现. 由DKAQ提供")
             << Macro.getKey(); 
       }
       ActiveMacros.clear();  // 清空当前函数的宏记录 

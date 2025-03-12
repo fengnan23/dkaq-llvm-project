@@ -52,7 +52,7 @@ void NamedParametersCheck::check(const MatchFinder::MatchResult &Result) {
       std::string ParamType = Param->getType().getAsString();
       
       auto Diag = diag(Param->getLocation(), 
-                      "违反GJB R-1-1-13 function parameter #%0 of type '%1' is unnamed")
+                      "违反GJB R-1-1-13 函数第%0个参数'%1'没有变量名. 由DKAQ提供")
                    << (i + 1) << ParamType;
       
       // Suggest a default parameter name based on type

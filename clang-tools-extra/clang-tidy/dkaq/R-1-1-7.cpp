@@ -89,8 +89,8 @@ private:
         SourceLocation MacroLoc = MacroNameTok.getLocation();
         
         // Create a helpful diagnostic message
-        std::string Message = "违反GJB R-1-1-7 parameter '" + ParamName.str() + 
-                            "' should be wrapped in parentheses";
+        std::string Message = "违反GJB R-1-1-7 宏定义函数中的参数 '" + ParamName.str() + 
+                            "' 一定要试用括号. 由DKAQ提供";
                             
         // Get the text of the macro definition for the note
         SourceRange DefRange(MI->getDefinitionLoc(), 

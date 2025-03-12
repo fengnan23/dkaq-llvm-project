@@ -63,7 +63,7 @@ void BitFieldWidthCheck::check(const MatchFinder::MatchResult &Result) {
 
   if (uWidth <= 1) {  
     // 示例：输出匹配到的位域名称和位置  
-    diag(BitField->getLocation(), "违反GJB R-1-1-10 Found integer bit-field: %0")  
+    diag(BitField->getLocation(), "违反GJB R-1-1-10 位变量的整形长度必须大于1: ''%0''. 由DKAQ提供")  
         << BitField->getName();  
   }  
   
