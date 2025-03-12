@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../ClangTidyCheck.h"
+#include "dkaqmodule.h"
 
 namespace clang {
 namespace tidy {
@@ -14,10 +15,10 @@ namespace dkaq {
 ///     extern int global_var; // Warning: extern declaration inside function
 ///   }
 /// \endcode
-class NoExternInFunctionCheck : public ClangTidyCheck {
+class NoExternInFunctionCheck : public DkaqClangTidyCheck {
 public:
   NoExternInFunctionCheck(StringRef Name, ClangTidyContext *Context)
-      : ClangTidyCheck(Name, Context) {}
+      : DkaqClangTidyCheck(Name, Context) {}
   void registerMatchers(ast_matchers::MatchFinder *Finder) override;
   void check(const ast_matchers::MatchFinder::MatchResult &Result) override;
 };

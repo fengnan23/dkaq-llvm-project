@@ -6,6 +6,7 @@
 
 #include "../ClangTidy.h"
 #include "../ClangTidyCheck.h"
+#include "dkaqmodule.h"
 
  
 using namespace clang;
@@ -23,10 +24,10 @@ namespace dkaq {
 ///   #define SQUARE(x) x*x       // Bad: should be (x)*(x)
 ///   #define SQUARE(x) (x)*(x)   // Good
 /// \endcode
-class MacroParamParenthesesCheck : public ClangTidyCheck {
+class MacroParamParenthesesCheck : public DkaqClangTidyCheck {
 public:
   MacroParamParenthesesCheck(StringRef Name, ClangTidyContext *Context)
-      : ClangTidyCheck(Name, Context) {}
+      : DkaqClangTidyCheck(Name, Context) {}
   void registerPPCallbacks(const SourceManager &SM, Preprocessor *PP,
                           Preprocessor *ModuleExpanderPP) override;
 };

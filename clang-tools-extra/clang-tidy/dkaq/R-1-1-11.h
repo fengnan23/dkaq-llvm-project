@@ -9,6 +9,7 @@
 #pragma once
 
 #include "../ClangTidyCheck.h"
+#include "dkaqmodule.h"
 
 namespace clang {
 namespace tidy {
@@ -31,10 +32,10 @@ namespace dkaq {
 ///     unsigned int y : 5;  // OK: explicitly unsigned
 ///   };
 /// \endcode
-class ExplicitBitFieldSignCheck : public ClangTidyCheck {
+class ExplicitBitFieldSignCheck : public DkaqClangTidyCheck {
 public:
   ExplicitBitFieldSignCheck(StringRef Name, ClangTidyContext *Context)
-      : ClangTidyCheck(Name, Context) {}
+      : DkaqClangTidyCheck(Name, Context) {}
   void registerMatchers(ast_matchers::MatchFinder *Finder) override;
   void check(const ast_matchers::MatchFinder::MatchResult &Result) override;
 };

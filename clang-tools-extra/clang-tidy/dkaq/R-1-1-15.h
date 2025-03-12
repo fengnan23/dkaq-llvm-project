@@ -1,6 +1,7 @@
 #pragma once
 
 #include "../ClangTidyCheck.h"
+#include "dkaqmodule.h"
 
 namespace clang {
 namespace tidy {
@@ -17,10 +18,10 @@ namespace dkaq {
 /// \code
 ///   int func(int height); // OK: parameter has explicit type
 /// \endcode
-class ExplicitParameterTypeCheck : public ClangTidyCheck {
+class ExplicitParameterTypeCheck : public DkaqClangTidyCheck {
 public:
   ExplicitParameterTypeCheck(StringRef Name, ClangTidyContext *Context)
-      : ClangTidyCheck(Name, Context) {}
+      : DkaqClangTidyCheck(Name, Context) {}
   void registerMatchers(ast_matchers::MatchFinder *Finder) override;
   void check(const ast_matchers::MatchFinder::MatchResult &Result) override;
 };
