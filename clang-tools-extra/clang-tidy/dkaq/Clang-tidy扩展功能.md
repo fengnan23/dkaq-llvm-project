@@ -15,14 +15,20 @@ mkdir build
 cd build
 
 # windows
+mkdir release
+cd release
 cmake -G Ninja LLVM_INCLUDE_TESTS=NO -DCMAKE_C_FLAGS=/utf-8 -DCMAKE_CXX_FLAGS=/utf-8 -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD=host -DLLVM_INCLUDE_TESTS=OFF -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra" ../llvm
+cmake --build . --parallel # 这一步不一定要做,这个是全部编译
+
 # linux
+mkdir release
+cd release
 cmake -G Ninja LLVM_INCLUDE_TESTS=NO -DCMAKE_BUILD_TYPE=Release -DLLVM_TARGETS_TO_BUILD=host -DLLVM_INCLUDE_TESTS=OFF -DLLVM_ENABLE_PROJECTS="clang;clang-tools-extra" ../llvm
+cmake --build . --parallel  # 这一步不一定要做,这个是全部编译
 
 # windows & linux
 ninja clangd
 ninja clang-tidy
-ninja clang-query
 
 #安装官方文档修改文件
 #创建 llvm-project\clang-tools-extra\clang-tidy\dkaq 目录，其中有3个文件
