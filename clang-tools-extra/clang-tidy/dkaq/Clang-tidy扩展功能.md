@@ -11,8 +11,7 @@ dnf install g++ cmake
 chcp 65001 # disable showInlcudes
 git clone https://github.com/llvm/llvm-project.git
 cd llvm-project
-mkdir build
-cd build
+
 
 # windows
 mkdir release
@@ -49,7 +48,7 @@ ninja clang-tidy
 
 bin\clang-tidy --checks=-*,dkaq-unused-variables,dkaq-virtual-destructor -list-checks
 bin\clang-tidy --checks=-*,dkaq-unused-variables d:\work\qt\markdown\a.cpp
-bin\clang-tidy -list-checks
+
 bin\clang-tidy --checks=* -list-checks
 bin\clang-tidy --checks=*  d:\work\qt\markdown\a.cpp
 bin\clang-tidy --checks=-*,dkaq-unused-variables,dkaq-virtual-destructor d:\work\qt\markdown\a.cpp
@@ -195,7 +194,15 @@ setstatus disable
 
   
 
-```
+```bash
+# windows
+git diff dkaq_base dkaq -- > dkaq.patch
 
+# linux
+patch -p1  < ~/dkaq.patch
+
+cd /qt/llvm-project-llvmorg-20.1.0/release
+ninja clang-tidy -j 4
+cp bin/clang-tidy ~/qtcreator-14.0.2/libexec/qtcreator/clang/bin
 ```
 

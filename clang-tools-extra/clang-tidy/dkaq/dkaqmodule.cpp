@@ -52,7 +52,7 @@ public:
 
     if (nDaysLeft <= 0)
       return;
-    if (nDaysLeft <= MAX_DAYS_EXPIRE)
+    if (nDaysLeft <= 30)
       g_strLicenseMsg = "版权" + std::to_string(nDaysLeft) + "天过期.";
 
     // CheckFactories.registerCheck<MyUnusedVarCheck>("dkaq-unused-variables");
